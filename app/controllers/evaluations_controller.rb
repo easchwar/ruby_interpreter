@@ -1,23 +1,23 @@
 class EvaluationsController < ApplicationController
   def create
     code = params[:code]
-    
-    sb = Sandbox.new
+
+    eval_test = EvalTester.new(code)
 
     begin
-      res = sb.run(code)
-    rescue SecurityError => e 
+      res = eval_test.run
+      test_results = eval_test.test
+    rescue SecurityError => e
       val = { code: "SecurityError: " + e.message }
       render json: val
-    rescue SyntaxError => e 
+    rescue SyntaxError => e
       val = { code: e.message }
       render json: val
     rescue NoMethodError => e
-      pretty_message = Sandbox.prettify(e)
-      render json: {code: pretty_message}
+      # pretty_message = Sandbox.prettify(e)
+      render json: {code: e.message}
     else
-      render json: { code: res } 
+      render json: { code: res.inspect }
     end
-
   end
 end
