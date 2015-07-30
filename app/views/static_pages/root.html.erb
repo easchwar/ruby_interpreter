@@ -2,24 +2,34 @@
 
 <h3>Your code here:</h3>
 <div class="input">
-  <form action="<%= evaluations_url %>" method="post">
-     <textarea name="code" rows="8" cols="40"></textarea>
+  <form class="clearfix" action="<%= evaluations_url %>" method="post">
+    <div class="input-area">
+      <textarea id="code-input" name="code" rows="8" cols="40"># Type some ruby code!</textarea>
+    </div>
      <button type="submit">Run</button>
   </form>
 </div>
 
-<h3>Result:</h3>
 <div class="output">
-  <pre>
-    
-  </pre>
+  <p>
+    <span>Result: </span><pre></pre>
+  </p>
 </div>
 
 <script type="text/javascript" charset="utf-8">
+  $(function() {
+    var txt = document.getElementById('code-input');
+    window.cm = CodeMirror.fromTextArea(txt, {
+      mode: 'ruby',
+      theme: 'monokai',
+    });
+  });
+
   $(
     $('form').on('submit', function(e) {
       e.preventDefault();
       console.log(e);
+      window.cm.save();
       var val = e.currentTarget[0].value;
       var action = e.currentTarget.action;
 

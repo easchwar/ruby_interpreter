@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+div {
+}
+
+form {
+  display: block;
+}
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.input {
+  display: block;
+  width: 500px;
+  margin: 10px;
+}
+
+.input-area {
+  margin-bottom: 10px;
+}
