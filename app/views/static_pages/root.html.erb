@@ -28,7 +28,6 @@
   $(
     $('form').on('submit', function(e) {
       e.preventDefault();
-      console.log(e);
       window.cm.save();
       var val = e.currentTarget[0].value;
       var action = e.currentTarget.action;
@@ -38,7 +37,6 @@
         url: action,
         data: { code: val },
         success: function(data) {
-          console.log(data);
           $('.output').find('pre').text(data.code);
         },
         error: function(data) {
