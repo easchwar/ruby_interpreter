@@ -1,11 +1,11 @@
 class Sandbox
-  CLASSES = [BasicObject, Object, Class,
+  CLASSES = [Object, Class,
              Array, Range, Hash, Date,
              String, Symbol,
              Fixnum, Float]
   METHODS = [:new, :puts, :print, :inspect,
              :to_s, :to_i, :to_sym,
-             :method_missing, :binding]
+             :method_missing]
 
   def self.prettify(error)
     reg = / for Shikashi::Sandbox::SandboxBasenamespace(\d+):Module/

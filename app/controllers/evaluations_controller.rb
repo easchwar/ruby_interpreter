@@ -6,7 +6,7 @@ class EvaluationsController < ApplicationController
 
     begin
       res = eval_test.run
-      test_results = eval_test.test
+      # test_results = eval_test.test
     rescue Rack::Timeout::RequestTimeoutError => e
       render json: { code: "Took too long!" }
     rescue SecurityError => e

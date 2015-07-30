@@ -8,9 +8,8 @@ class EvalTester
   end
 
   def run
-    # need a timeout!
-    res = sb.run(@classed)
-    @app = sb.base_namespace::Application.new
+    res = sb.run(@code)
+    # @app = sb.base_namespace::Application.new
     res
   end
 
