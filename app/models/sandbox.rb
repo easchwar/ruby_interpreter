@@ -1,6 +1,14 @@
 class Sandbox
-  CLASSES = [Array, Hash, String, Fixnum, Float]
-  METHODS = [:new, :puts, :print, :inspect] 
+  CLASSES = [BasicObject, Object, Array, Hash, String, Fixnum, Float]
+  METHODS = [:new, :puts, :print, :inspect, :to_s, :to_i, :to_sym, :method_missing]
+
+  def self.prettify(error)
+    reg = / for Shikashi::Sandbox::SandboxBasenamespace(\d+):Module/
+
+    error.message.gsub(reg, "").gsub('local variable or ', "")
+      .gsub('method', 'local variable or method')
+  end
+
   def initialize
     @sandbox = Shikashi::Sandbox.new
     @privilege = Shikashi::Privileges.new
