@@ -16,6 +16,42 @@
   </p>
 </div>
 
+
+<script src="repl_build/jsrepl.js"></script>
+
+<script type="text/javascript">
+  $(function () {
+      window.jsrepl = new JSREPL({
+        input: function(continuation) {
+          var input = window.prompt('input the thing');
+          continuation(input);
+        },
+        output: function(out) {
+          console.log(out);
+        },
+        result: function(res) {
+          console.log(res);
+          return res;
+        },
+        error: function(err) {
+          console.log('Error');
+          console.log(err);
+        },
+        timeout: {
+          time: 5000,
+          callback: function() {
+            console.log('too long!');
+            return true;
+          }
+        }
+      });
+
+      window.jsrepl.loadLanguage('ruby', function() {
+        alert('ruby loaded!');
+      });
+  });
+</script>
+
 <script type="text/javascript" charset="utf-8">
   $(function() {
     var txt = document.getElementById('code-input');
