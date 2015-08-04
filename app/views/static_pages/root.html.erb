@@ -59,26 +59,13 @@
       mode: 'ruby',
       theme: 'monokai',
     });
-  });
 
-  $(
     $('form').on('submit', function(e) {
       e.preventDefault();
       window.cm.save();
       var val = e.currentTarget[0].value;
-      var action = e.currentTarget.action;
 
-      $.ajax({
-        method: 'POST',
-        url: action,
-        data: { code: val },
-        success: function(data) {
-          $('.output').find('pre').text(data.code);
-        },
-        error: function(data) {
-          console.log(data);
-        }
-      });
-    })
-   );
+      window.jsrepl.eval(val);
+    });
+  });
 </script>
